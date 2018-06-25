@@ -290,6 +290,10 @@ function cleanup() {
   document.getElementById("map-canvas").innerHTML = '';
 }
 
+function closePointPopup() {
+  popup.setPosition(undefined);
+}
+
 function displayTrack(xml, update) {
   altitudes = {};
   var totalMeters = 0;

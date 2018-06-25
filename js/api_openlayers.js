@@ -73,6 +73,10 @@ function cleanup() {
   document.getElementById("map-canvas").innerHTML = '';
 }
 
+function closePointPopup() {
+
+}
+
 function displayTrack(xml, update) {
   altitudes = {};
   var totalMeters = 0;
