@@ -112,6 +112,16 @@
                                    $altitude, $speed, $bearing, $accuracy, $provider, $comment, $imageId);
     }
 
+    /**
+     * Delete a point (Track id not needed)
+     * 
+     * @param int $pointId
+     * @return  bool    Success?
+     */
+    public function deletePoint($pointId) {
+      return uPosition::deletePoint($pointId);
+    }
+    
    /**
     * Delete track with all positions
     *
