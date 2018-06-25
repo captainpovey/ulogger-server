@@ -117,7 +117,31 @@
       return $positionId;
     }
 
-   /**
+    /**
+     * Delete one point/Position from an ID
+     * 
+     * @param   int point ID (Database ID)
+     * @return bool Success?
+     */
+
+    public static function deletePoint($pointId = NULL) {
+
+      $ret = false;
+      if(!empty($pointId)) {
+        $query = "DELETE FROM `" . self::db()->table('positions') . "` WHERE id = ?";
+        $stmt = self::db()->prepare($query);
+        $stmt->bind_param('i', $pid);
+        $pid = $pointId;
+        $stmt->execute();
+        if (!self::db()->error && !$stmt->errno) {
+          $ret = true;
+        }
+        $stmt->close();
+      }
+      return $ret;
+    }
+
+    /**
     * Delete all user's positions, optionally limit to given track
     *
     * @param int $userId User id
