@@ -21,7 +21,8 @@
   require_once(ROOT_DIR . "/lang.php");
   require_once(ROOT_DIR . "/helpers/track.php");
   require_once(ROOT_DIR . "/helpers/utils.php");
-
+  require_once(ROOT_DIR . "/helpers/position.php");
+  
   $auth = new uAuth();
 
   $action = isset($_REQUEST['action']) ? $_REQUEST['action'] : NULL;
@@ -50,6 +51,15 @@
       }
       break;
 
+    case 'deletepoint':
+        $pid = isset($_REQUEST['pointid']) ? $_REQUEST['pointid'] : NULL;
+        
+        if (uPosition::deletePoint($pid) === false) {
+            //uUtils::exitWithError($lang["servererror"]);
+            uUtils::exitWithError("Error deleting point");
+        }
+        break;
+        
     default:
       uUtils::exitWithError($lang["servererror"]);
       break;
