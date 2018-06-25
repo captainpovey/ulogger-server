@@ -23,6 +23,7 @@ var layerMarkers;
 var selectedLayer;
 var olStyles;
 var loadedAPI = 'openlayers3';
+var popup;
 
 function init() {
 
@@ -137,7 +138,7 @@ function init() {
   popupContent.id = 'popup-content';
   popupContainer.appendChild(popupContent);
 
-  var popup = new ol.Overlay({
+  popup = new ol.Overlay({
     element: popupContainer,
     autoPan: true,
     autoPanAnimation: {
@@ -291,7 +292,9 @@ function cleanup() {
 }
 
 function closePointPopup() {
-  removeElementById('popup');
+  if(popup) {
+    popup.setPosition(undefined);
+  }
 }
 
 function displayTrack(xml, update) {
