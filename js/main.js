@@ -135,6 +135,7 @@ function loadTrack(userid, trackid, update) {
   xhr.onreadystatechange = function () {
     if (xhr.readyState == 4) {
       if (xhr.status == 200) {
+        closePointPopup();
         var xml = xhr.responseXML;
         var positions = xml.getElementsByTagName('position');
         if (positions.length > 0) {
