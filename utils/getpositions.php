@@ -53,6 +53,7 @@ $xml->startElement('root');
 foreach ($positionsArr as $position) {
   $xml->startElement("position");
   $xml->writeAttribute("id", $position->id);
+    $xml->writeElement("pointid", $position->id);
     $xml->writeElement("latitude", $position->latitude);
     $xml->writeElement("longitude", $position->longitude);
     $xml->writeElement("altitude", ($position->altitude) ? round($position->altitude) : $position->altitude);
