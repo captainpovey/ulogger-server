@@ -152,6 +152,21 @@ function loadTrack(userid, trackid, update) {
   setLoader(title);
 }
 
+function deletePoint(pointid) {
+  var xhr = getXHR();
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState == 4) {
+      if (xhr.status == 200) {
+        var xml = xhr.responseXML;
+          loadTrack(userid, trackid, 1);
+        }
+        xhr = null;
+      }
+    }
+	xhr.open('GET', 'utils/handletrack.php?action=deletepoint&pointid=' + pointid + '&trackid=' + trackid + '&userid=' + userid, true);
+	xhr.send();
+}
+
 function parsePosition(p, id) {
   // read data
   var latitude = parseFloat(getNode(p, 'latitude'));
@@ -176,6 +191,7 @@ function parsePosition(p, id) {
   var timestamp = getNode(p, 'timestamp');
   var distance = parseInt(getNode(p, 'distance'));
   var seconds = parseInt(getNode(p, 'seconds'));
+  var pointid = parseInt(getNode(p, 'pointid'));
   return {
     'latitude': latitude,
     'longitude': longitude,
@@ -190,7 +206,8 @@ function parsePosition(p, id) {
     'tid': tid,
     'timestamp': timestamp,
     'distance': distance,
-    'seconds': seconds
+    'seconds': seconds,
+    'pointid' : pointid
   };
 }
 
@@ -244,6 +261,7 @@ function getPopupHtml(p, i, count) {
     '</div>' +
     stats +
     '</div><div id="pfooter">' + sprintf(lang['pointof'], i + 1, count) + '</div>' +
+    '<div><button type="button" onclick="deletePoint(' + p.pointid + ');">Delete Point</button></div>' +
     '</div>';
   return popup;
 }
