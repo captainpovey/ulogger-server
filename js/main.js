@@ -261,7 +261,7 @@ function getPopupHtml(p, i, count) {
     '</div>' +
     stats +
     '</div><div id="pfooter">' + sprintf(lang['pointof'], i + 1, count) + '</div>' +
-    '<div><button type="button" class="red-button" onclick="deletePoint(' + p.pointid + ');">' + lang['deltrack'] +'</button></div>' +
+    '<div><button type="button" class="red-button" onclick="deletePoint(' + p.pointid + ');">' + lang['delpoint'] +'</button></div>' +
     '</div>';
   return popup;
 }
