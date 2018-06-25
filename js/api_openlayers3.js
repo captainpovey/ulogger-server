@@ -291,7 +291,7 @@ function cleanup() {
 }
 
 function closePointPopup() {
-  popup.setPosition(undefined);
+  removeElementById('popup');
 }
 
 function displayTrack(xml, update) {
