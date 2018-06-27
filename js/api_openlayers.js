@@ -75,7 +75,11 @@ function cleanup() {
 }
 
 function closePointPopup() {
-    map.removePopup(popup);
+  if (map.popups.length > 0) {
+    for (var j = map.popups.length - 1; j >= 0; j--) {
+      map.removePopup(map.popups[j])
+    }
+  }
 }
 
 function displayTrack(xml, update) {
