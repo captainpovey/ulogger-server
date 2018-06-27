@@ -23,6 +23,7 @@ var layerMarkers;
 var wgs84;
 var mercator;
 var loadedAPI = 'openlayers';
+var popup;
 
 function init() {
   wgs84 = new OpenLayers.Projection('EPSG:4326');   // from WGS 1984
@@ -74,7 +75,7 @@ function cleanup() {
 }
 
 function closePointPopup() {
-
+    map.removePopup(popup);
 }
 
 function displayTrack(xml, update) {
@@ -159,7 +160,7 @@ function setMarker(p, i, posLen) {
         };
       }
       // show popup
-      var popup = new OpenLayers.Popup.FramedCloud("popup_" + (i + 1), lonLat, null, content, icon, true);
+      popup = new OpenLayers.Popup.FramedCloud("popup_" + (i + 1), lonLat, null, content, icon, true);
       map.addPopup(popup);
       if (document.getElementById('bottom').style.display == 'block') {
         var index = 0;
